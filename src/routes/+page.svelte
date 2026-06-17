@@ -354,6 +354,7 @@
                     <div class="preview-mascot-wrapper">
                       <DisplayMascot
                         theme={themeOpt.id}
+                        character="toiletroll"
                         size="36px"
                         seed={index * 1000 + 12345}
                         disableJsAnimation={true}

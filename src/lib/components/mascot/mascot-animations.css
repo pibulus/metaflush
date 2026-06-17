@@ -537,3 +537,13 @@
 .animations-paused * {
 	animation-play-state: paused !important;
 }
+
+/* Character outline stroke adjustments for toiletroll/gravestone */
+.mascot-svg.character-toiletroll .mascot-outline-path,
+.mascot-svg.character-gravestone .mascot-outline-path {
+	fill: none !important;
+	stroke: #000000 !important;
+	stroke-width: 24px !important;
+	stroke-linecap: round !important;
+	stroke-linejoin: round !important;
+}

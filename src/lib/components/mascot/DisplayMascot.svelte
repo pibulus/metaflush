@@ -1,16 +1,19 @@
 <script>
 	import './mascot-animations.css';
-	import mascotPathsUrl from './mascot-paths.svg?url';
 	import { onMount, onDestroy } from 'svelte';
 	import { getThemeNames } from './mascotTheme.js';
+	import { getCharacterUrl } from './characters.js';
 
 	// Direct theme prop - no store subscription
 	export let theme = 'clean';
+	export let character = 'toiletroll';
 	export let size = '40px';
 	export let width = null;
 	export let height = null;
 	export let seed = Math.floor(Math.random() * 10000);
 	export let disableJsAnimation = false;
+
+	$: mascotPathsUrl = getCharacterUrl(character);
 
 	// DOM references
 	let mascotSvg;
@@ -102,7 +105,7 @@
 			viewBox="0 0 1024 1024"
 			xmlns="http://www.w3.org/2000/svg"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
-			class="mascot-svg theme-{resolvedTheme}"
+			class="mascot-svg theme-{resolvedTheme} character-{character}"
 			class:visible={isMascotReady}
 			aria-hidden="true"
 			focusable="false"

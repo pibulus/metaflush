@@ -342,7 +342,7 @@
 			viewBox="0 0 1024 1024"
 			xmlns="http://www.w3.org/2000/svg"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
-			class="mascot-svg theme-{currentTheme} {animationClass}"
+			class="mascot-svg theme-{currentTheme} {animationClass} character-{character}"
 			pointer-events="none"
 			class:visible={fullyReady}
 			class:recording={$mascotState.isRecording}
