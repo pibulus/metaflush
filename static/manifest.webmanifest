@@ -1,0 +1,13 @@
+{
+  "name": "metaflush",
+  "short_name": "metaflush",
+  "description": "Strip EXIF, GPS, and tracking metadata from your files — losslessly, 100% in your browser.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0fdf4",
+  "theme_color": "#f0fdf4",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -130,6 +130,7 @@
         type="file"
         multiple
         class="sr-only"
+        aria-label="Choose files to clean"
         on:change={onPick}
       />
       {#if busy}
