@@ -3,6 +3,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { getThemeNames } from './mascotTheme.js';
 	import { getCharacterUrl } from './characters.js';
+	import { GRADIENT_DEFS } from './gradients.js';
 
 	// Direct theme prop - no store subscription
 	export let theme = 'clean';

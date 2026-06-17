@@ -1,7 +1,7 @@
 <script>
-  export let title = "DrShrink — drop a file, get a smaller one";
+  export let title = "metaflush — strip metadata client-side";
   export let description =
-    "Drop a file in, get a smaller one out. DrShrink compresses images and files the 80/20 way — no settings, no fuss.";
+    "Strip EXIF, GPS, and tracking metadata from your files — 100% in your browser.";
   export let footerYear = new Date().getFullYear();
 </script>
 
