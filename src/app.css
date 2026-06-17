@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme vars (--ds-*) live in lib/styles/theme-variables.css */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: var(--ds-ink, #2a2233);
+  background: var(--ds-bg, #f3e8ff);
+  transition: background 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reserve scrollbar space when modal opens */
+html:has(dialog[open]),
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Modal styling */
+.modal {
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  margin: 0;
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  align-items: center;
+  justify-items: center;
+  overscroll-behavior: contain;
+}
+
+dialog.modal[open] {
+  display: grid;
+  grid-template-areas: 'modal';
+  place-items: center;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+}
+
+.modal > .modal-backdrop {
+  grid-area: modal;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: rgba(43, 38, 32, 0.46);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  animation: modal-backdrop-in 180ms ease-out both;
+}
+
+.modal-box {
+  grid-area: modal;
+  z-index: 1;
+  box-sizing: border-box;
+  width: min(92vw, 32rem);
+  max-height: 86dvh;
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 4px solid #000;
+  border-radius: 24px;
+  background: #fffffa;
+  box-shadow: 6px 6px 0px 0px #000;
+  transform-origin: center;
+}
+
+dialog.modal[open] > .modal-box {
+  animation: modal-pop-in 420ms cubic-bezier(0.18, 0.92, 0.2, 1.18) both;
+}
+
+@keyframes modal-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
