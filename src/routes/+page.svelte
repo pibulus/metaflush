@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { Mascot } from "$lib/components/mascot";
+  import { Mascot, DisplayMascot } from "$lib/components/mascot";
   import PageLayout from "$lib/components/layout/PageLayout.svelte";
   import AnimatedTitle from "$lib/components/AnimatedTitle.svelte";
   import FooterComponent from "$lib/components/FooterComponent.svelte";
@@ -313,7 +313,7 @@
                 name="strict" 
                 checked={!strictMode} 
                 on:change={() => toggleStrict(false)}
-                class="w-5 h-5 text-purple-600 accent-purple-600 border-2 border-black" 
+                class="w-5 h-5 text-emerald-600 accent-emerald-600 border-2 border-black" 
               />
               <div>
                 <span class="font-black text-sm block">Safe Mode (Recommended)</span>
@@ -329,13 +329,47 @@
                 name="strict" 
                 checked={strictMode} 
                 on:change={() => toggleStrict(true)}
-                class="w-5 h-5 text-purple-600 accent-purple-600 border-2 border-black" 
+                class="w-5 h-5 text-emerald-600 accent-emerald-600 border-2 border-black" 
               />
               <div>
                 <span class="font-black text-sm block text-red-600">Strict Mode (Extreme Clean)</span>
                 <span class="text-xs font-semibold text-gray-500">Wipes all metadata, comments, and color profiles. Results in the absolute smallest file size possible, but might subtly alter colors.</span>
               </div>
             </label>
+          </div>
+
+          <div class="flex flex-col gap-2 rounded-xl border-2 border-black bg-white p-4">
+            <span class="text-xs font-black uppercase text-gray-500">App Theme</span>
+            <div class="grid grid-cols-4 gap-2 mt-1" role="group" aria-label="Theme">
+              {#each THEME_LIST as themeOpt, index}
+                <button
+                  type="button"
+                  class="relative flex flex-col items-center justify-center p-2 rounded-xl border-2 border-black transition-all shadow-[2px_2px_0px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#000] hover:bg-gray-50 { $theme === themeOpt.id ? 'bg-emerald-50 border-emerald-500' : 'bg-[#fffdf5]' }"
+                  on:click={() => applyTheme(themeOpt.id)}
+                  title={themeOpt.label}
+                  aria-label="Choose {themeOpt.label} theme"
+                  aria-pressed={$theme === themeOpt.id}
+                >
+                  <div class="relative h-10 w-10 flex items-center justify-center">
+                    <div class="preview-mascot-wrapper">
+                      <DisplayMascot
+                        theme={themeOpt.id}
+                        size="36px"
+                        seed={index * 1000 + 12345}
+                        disableJsAnimation={true}
+                      />
+                    </div>
+                  </div>
+                  <span class="text-[10px] font-black mt-1 text-black leading-none">{themeOpt.label}</span>
+                  
+                  {#if $theme === themeOpt.id}
+                    <div class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-400 border border-black text-[9px] font-black text-black" aria-hidden="true">
+                      ✓
+                    </div>
+                  {/if}
+                </button>
+              {/each}
+            </div>
           </div>
         </div>
 
@@ -470,16 +504,16 @@
     border-color: rgba(0, 0, 0, 0.55);
     transform: scale(1.12);
   }
-  .theme-vibrant {
-    background: linear-gradient(135deg, #9333ea, #f472b6);
+  .theme-clean {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
   }
-  .theme-warm {
-    background: linear-gradient(135deg, #ff7a45, #ffd24c);
+  .theme-porcelain {
+    background: linear-gradient(135deg, #0ea5e9, #a5f3fc);
   }
-  .theme-cool {
-    background: linear-gradient(135deg, #0fb5c9, #5fe07a);
+  .theme-kraft {
+    background: linear-gradient(135deg, #854d0e, #166534);
   }
-  .theme-minimal {
-    background: linear-gradient(135deg, #52525b, #a1a1aa);
+  .theme-lavender {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
   }
 </style>

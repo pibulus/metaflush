@@ -1,48 +1,48 @@
-/* DrShrink theme variables — 4 themes via html[data-theme] */
+/* metaflush theme variables — 4 themes via html[data-theme] */
 
 :root {
-  /* defaults = vibrant */
-  --ds-bg: #f3e8ff;
-  --ds-bg-2: #fce7f3;
+  /* defaults = clean */
+  --ds-bg: #f0fdf4;
+  --ds-bg-2: #dcfce7;
   --ds-ink: #2a2233;
-  --ds-primary-color: #9333ea;
-  --ds-primary-color-rgb: 147, 51, 234;
-  --ds-accent-color: #c026d3;
-  --ds-footer-surface-rgb: 255, 255, 255;
+  --ds-primary-color: #10b981;
+  --ds-primary-color-rgb: 16, 185, 129;
+  --ds-accent-color: #06b6d4;
+  --ds-footer-surface-rgb: 240, 253, 244;
 }
 
-html[data-theme="vibrant"] {
-  --ds-bg: #f3e8ff;
-  --ds-bg-2: #fce7f3;
-  --ds-primary-color: #9333ea;
-  --ds-primary-color-rgb: 147, 51, 234;
-  --ds-accent-color: #c026d3;
-  --ds-footer-surface-rgb: 255, 255, 255;
+html[data-theme="clean"] {
+  --ds-bg: #f0fdf4;
+  --ds-bg-2: #dcfce7;
+  --ds-primary-color: #10b981;
+  --ds-primary-color-rgb: 16, 185, 129;
+  --ds-accent-color: #06b6d4;
+  --ds-footer-surface-rgb: 240, 253, 244;
 }
 
-html[data-theme="warm"] {
-  --ds-bg: #fff3e9;
-  --ds-bg-2: #ffe0cc;
-  --ds-primary-color: #ff7a45;
-  --ds-primary-color-rgb: 255, 122, 69;
-  --ds-accent-color: #ff5a3c;
-  --ds-footer-surface-rgb: 255, 248, 240;
+html[data-theme="porcelain"] {
+  --ds-bg: #ecfeff;
+  --ds-bg-2: #cffafe;
+  --ds-primary-color: #0ea5e9;
+  --ds-primary-color-rgb: 14, 165, 233;
+  --ds-accent-color: #3b82f6;
+  --ds-footer-surface-rgb: 236, 254, 255;
 }
 
-html[data-theme="cool"] {
-  --ds-bg: #e7faf6;
-  --ds-bg-2: #cdeef0;
-  --ds-primary-color: #0fb5c9;
-  --ds-primary-color-rgb: 15, 181, 201;
-  --ds-accent-color: #14b8a6;
-  --ds-footer-surface-rgb: 240, 253, 250;
+html[data-theme="kraft"] {
+  --ds-bg: #fdfcfa;
+  --ds-bg-2: #f5ede3;
+  --ds-primary-color: #854d0e;
+  --ds-primary-color-rgb: 133, 77, 14;
+  --ds-accent-color: #166534;
+  --ds-footer-surface-rgb: 253, 252, 250;
 }
 
-html[data-theme="minimal"] {
-  --ds-bg: #f4f4f5;
-  --ds-bg-2: #e6e6e9;
-  --ds-primary-color: #52525b;
-  --ds-primary-color-rgb: 82, 82, 91;
-  --ds-accent-color: #71717a;
-  --ds-footer-surface-rgb: 250, 250, 250;
+html[data-theme="lavender"] {
+  --ds-bg: #f5f3ff;
+  --ds-bg-2: #ede9fe;
+  --ds-primary-color: #6366f1;
+  --ds-primary-color-rgb: 99, 102, 241;
+  --ds-accent-color: #a855f7;
+  --ds-footer-surface-rgb: 245, 243, 255;
 }

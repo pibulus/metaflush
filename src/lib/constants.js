@@ -1,21 +1,21 @@
-// DrShrink constants
+// metaflush constants
 
 export const THEMES = {
-  VIBRANT: "vibrant", // purple→pink (default, the brain's colors)
-  WARM: "warm", // sunset orange
-  COOL: "cool", // mint/aqua
-  MINIMAL: "minimal", // greyscale, calm
+  CLEAN: "clean",         // default, fresh mint/emerald
+  PORCELAIN: "porcelain", // crisp water blue/cyan
+  KRAFT: "kraft",         // organic beige/green (crepe/recycled paper)
+  LAVENDER: "lavender",   // sanitizing ultraviolet/lavender
 };
 
 export const THEME_LIST = [
-  { id: THEMES.VIBRANT, label: "Vibrant" },
-  { id: THEMES.WARM, label: "Warm" },
-  { id: THEMES.COOL, label: "Cool" },
-  { id: THEMES.MINIMAL, label: "Minimal" },
+  { id: THEMES.CLEAN, label: "Clean" },
+  { id: THEMES.PORCELAIN, label: "Porcelain" },
+  { id: THEMES.KRAFT, label: "Kraft" },
+  { id: THEMES.LAVENDER, label: "Lavender" },
 ];
 
-export const DEFAULT_THEME = THEMES.VIBRANT;
+export const DEFAULT_THEME = THEMES.CLEAN;
 
 export const STORAGE_KEYS = {
-  THEME: "drshrink-theme",
+  THEME: "metaflush-theme",
 };

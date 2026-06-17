@@ -2,17 +2,15 @@
 	import './mascot-animations.css';
 	import mascotPathsUrl from './mascot-paths.svg?url';
 	import { onMount, onDestroy } from 'svelte';
-	import { GRADIENT_DEFS } from './gradients.js';
+	import { getThemeNames } from './mascotTheme.js';
 
 	// Direct theme prop - no store subscription
-	export let theme = 'peach';
+	export let theme = 'clean';
 	export let size = '40px';
 	export let width = null;
 	export let height = null;
 	export let seed = Math.floor(Math.random() * 10000);
 	export let disableJsAnimation = false;
-
-	const validThemes = new Set(['peach', 'mint', 'bubblegum', 'rainbow']);
 
 	// DOM references
 	let mascotSvg;
@@ -26,7 +24,7 @@
 	let openEyesTimeoutId;
 	let blinkCounter = 0;
 
-	$: resolvedTheme = validThemes.has(theme) ? theme : 'peach';
+	$: resolvedTheme = getThemeNames().includes(theme) ? theme : getThemeNames()[0];
 	$: resolvedWidth = width || size;
 	$: resolvedHeight = height || size;
 	$: gradientPrefix = `display-mascot-${String(seed).replace(/[^a-zA-Z0-9_-]/g, '-')}`;

@@ -1,41 +1,41 @@
-// DrShrink mascot palettes — keyed to match the app themes (constants THEMES),
-// so the brain recolors when the theme switches.
+// metaflush mascot palettes — keyed to match the app themes (constants THEMES),
+// so the mascot recolors when the theme switches.
 
-export const drShrinkThemes = {
-  vibrant: {
-    start: "#7c3aed", startBright: "#8b5cf6",
-    mid1: "#9333ea", mid1Bright: "#a855f7",
-    mid2: "#c026d3", mid2Bright: "#d946ef",
-    mid3: "#db2777", mid3Bright: "#ec4899",
-    end: "#f472b6", endBright: "#f9a8d4",
-    glowPrimary: "rgba(124,58,237,1)", glowSecondary: "rgba(192,38,211,0.9)", glowTertiary: "rgba(244,114,182,0.8)",
-    shadowColor: "rgba(124,58,237,0.3)", shadowColorBright: "rgba(192,38,211,0.4)", shadowColorBrightest: "rgba(244,114,182,0.5)",
+export const metaflushThemes = {
+  clean: {
+    start: "#059669", startBright: "#10b981",
+    mid1: "#10b981", mid1Bright: "#34d399",
+    mid2: "#34d399", mid2Bright: "#6ee7b7",
+    mid3: "#06b6d4", mid3Bright: "#22d3ee",
+    end: "#38bdf8", endBright: "#7dd3fc",
+    glowPrimary: "rgba(5,150,105,1)", glowSecondary: "rgba(6,182,212,0.9)", glowTertiary: "rgba(56,189,248,0.8)",
+    shadowColor: "rgba(5,150,105,0.3)", shadowColorBright: "rgba(6,182,212,0.4)", shadowColorBrightest: "rgba(56,189,248,0.5)",
   },
-  warm: {
-    start: "#ff6a3d", startBright: "#ff8159",
-    mid1: "#ff7e5f", mid1Bright: "#ff9472",
-    mid2: "#ff9a52", mid2Bright: "#ffb070",
-    mid3: "#ffb347", mid3Bright: "#ffc266",
-    end: "#ffd24c", endBright: "#ffe27a",
-    glowPrimary: "rgba(255,106,61,1)", glowSecondary: "rgba(255,154,82,0.9)", glowTertiary: "rgba(255,210,76,0.8)",
-    shadowColor: "rgba(255,140,90,0.3)", shadowColorBright: "rgba(255,170,110,0.4)", shadowColorBrightest: "rgba(255,210,150,0.5)",
+  porcelain: {
+    start: "#0ea5e9", startBright: "#38bdf8",
+    mid1: "#38bdf8", mid1Bright: "#7dd3fc",
+    mid2: "#2563eb", mid2Bright: "#3b82f6",
+    mid3: "#60a5fa", mid3Bright: "#93c5fd",
+    end: "#a5f3fc", endBright: "#cffafe",
+    glowPrimary: "rgba(14,165,233,1)", glowSecondary: "rgba(37,99,235,0.9)", glowTertiary: "rgba(165,243,252,0.8)",
+    shadowColor: "rgba(14,165,233,0.3)", shadowColorBright: "rgba(37,99,235,0.4)", shadowColorBrightest: "rgba(165,243,252,0.5)",
   },
-  cool: {
-    start: "#0ac5ef", startBright: "#20d0fa",
-    mid1: "#16cdd6", mid1Bright: "#30dfe4",
-    mid2: "#1fd4bf", mid2Bright: "#38e0cc",
-    mid3: "#2fd98a", mid3Bright: "#48e89c",
-    end: "#5fe07a", endBright: "#7aec92",
-    glowPrimary: "rgba(15,181,201,1)", glowSecondary: "rgba(31,212,191,0.9)", glowTertiary: "rgba(95,224,122,0.8)",
-    shadowColor: "rgba(20,184,166,0.3)", shadowColorBright: "rgba(40,210,190,0.4)", shadowColorBrightest: "rgba(95,224,150,0.5)",
+  kraft: {
+    start: "#78350f", startBright: "#92400e",
+    mid1: "#b45309", mid1Bright: "#d97706",
+    mid2: "#15803d", mid2Bright: "#16a34a",
+    mid3: "#4d7c0f", mid3Bright: "#65a30d",
+    end: "#a3e635", endBright: "#bef264",
+    glowPrimary: "rgba(120,53,15,1)", glowSecondary: "rgba(21,128,61,0.9)", glowTertiary: "rgba(163,230,53,0.8)",
+    shadowColor: "rgba(120,53,15,0.3)", shadowColorBright: "rgba(21,128,61,0.4)", shadowColorBrightest: "rgba(163,230,53,0.5)",
   },
-  minimal: {
-    start: "#6b7280", startBright: "#7b828e",
-    mid1: "#71717a", mid1Bright: "#82828b",
-    mid2: "#808089", mid2Bright: "#90909a",
-    mid3: "#8e8e98", mid3Bright: "#9e9ea8",
-    end: "#a1a1aa", endBright: "#b4b4bd",
-    glowPrimary: "rgba(82,82,91,0.9)", glowSecondary: "rgba(113,113,122,0.8)", glowTertiary: "rgba(161,161,170,0.7)",
-    shadowColor: "rgba(82,82,91,0.25)", shadowColorBright: "rgba(113,113,122,0.3)", shadowColorBrightest: "rgba(161,161,170,0.35)",
+  lavender: {
+    start: "#4f46e5", startBright: "#6366f1",
+    mid1: "#7c3aed", mid1Bright: "#8b5cf6",
+    mid2: "#9333ea", mid2Bright: "#a855f7",
+    mid3: "#c026d3", mid3Bright: "#d946ef",
+    end: "#e879f9", endBright: "#f5d0fe",
+    glowPrimary: "rgba(79,70,229,1)", glowSecondary: "rgba(147,51,234,0.9)", glowTertiary: "rgba(232,121,249,0.8)",
+    shadowColor: "rgba(79,70,229,0.3)", shadowColorBright: "rgba(147,51,234,0.4)", shadowColorBrightest: "rgba(232,121,249,0.5)",
   },
 };

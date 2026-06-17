@@ -8,12 +8,12 @@
     ensureMascotThemeStyles,
     setTheme as setMascotTheme,
   } from "$lib/components/mascot";
-  import { drShrinkThemes } from "$lib/mascotThemes.js";
+  import { metaflushThemes } from "$lib/mascotThemes.js";
   import { theme, applyTheme } from "$lib";
   import { DEFAULT_THEME } from "$lib/constants.js";
 
-  // Register DrShrink's mascot palettes (keyed to the app theme names).
-  defineMascotThemes(drShrinkThemes, { fallback: DEFAULT_THEME });
+  // Register metaflush's mascot palettes (keyed to the app theme names).
+  defineMascotThemes(metaflushThemes, { fallback: DEFAULT_THEME });
 
   // Keep the mascot's color in sync with the app theme.
   $: setMascotTheme($theme);
