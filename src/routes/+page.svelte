@@ -386,6 +386,23 @@
   .drop-busy {
     border-style: solid;
     border-color: #c026d3;
+    background-image: linear-gradient(
+      135deg,
+      rgba(192, 38, 211, 0.08) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(192, 38, 211, 0.08) 50%,
+      rgba(192, 38, 211, 0.08) 75%,
+      transparent 75%,
+      transparent
+    );
+    background-size: 40px 40px;
+    animation: progress-stripes 1.2s linear infinite;
+  }
+
+  @keyframes progress-stripes {
+    from { background-position: 40px 0; }
+    to { background-position: 0 0; }
   }
   .drop-text {
     font-size: 1.25rem;
