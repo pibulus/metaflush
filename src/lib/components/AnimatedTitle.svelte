@@ -63,7 +63,7 @@
   }
 
   .title-ink {
-    color: #000;
+    color: var(--ds-ink, #2a2233);
   }
 
   .stagger-letter {
