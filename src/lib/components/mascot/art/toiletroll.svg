@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="display: none;">
+  <!-- TOILETROLL PATHS LIBRARY
+       A cute, custom toilet paper roll mascot for metaflush.
+       viewBox 0 0 1024 1024.
+  -->
+
+  <!-- Main Body (Toilet roll outline + cardboard core + unravelling paper sheet) -->
+  <path id="mascot-body-path" fill-rule="evenodd" d="
+    M 380 280 
+    C 380 230, 644 230, 644 280 
+    C 644 330, 380 330, 380 280 
+    M 480 280 
+    C 480 255, 544 255, 544 280 
+    C 544 305, 480 305, 480 280 
+    M 644 280 
+    L 644 750 
+    C 644 800, 380 800, 380 750 
+    L 380 280 
+    M 380 550 
+    L 310 550 
+    L 310 860 
+    L 335 835 
+    L 360 860 
+    L 385 835 
+    L 410 860 
+    L 410 750" 
+  />
+
+  <!-- Left Eye -->
+  <path id="mascot-eye-left-path" d="
+    M 440 500 
+    m -30 0 
+    a 30 45 0 1 1 60 0 
+    a 30 45 0 1 1 -60 0 
+    z" 
+  />
+
+  <!-- Right Eye -->
+  <path id="mascot-eye-right-path" d="
+    M 584 500 
+    m -30 0 
+    a 30 45 0 1 1 60 0 
+    a 30 45 0 1 1 -60 0 
+    z" 
+  />
+
+  <!-- Background Silhouette (Combines cylinder + sheet for coloring) -->
+  <path id="mascot-background" d="
+    M 380 280 
+    C 380 230, 644 230, 644 280 
+    L 644 750 
+    C 644 800, 380 800, 380 750 
+    L 380 550 
+    L 310 550 
+    L 310 860 
+    L 335 835 
+    L 360 860 
+    L 385 835 
+    L 410 860 
+    L 410 750 
+    Z" 
+  />
+</svg>

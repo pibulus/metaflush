@@ -104,7 +104,7 @@
     <div class="mascot-slot">
       <Mascot
         bind:this={mascot}
-        character="ghost"
+        character="toiletroll"
         accessory="none"
         theme={$theme}
         {busy}
