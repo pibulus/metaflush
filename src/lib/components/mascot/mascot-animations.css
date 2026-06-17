@@ -547,3 +547,13 @@
 	stroke-linecap: round !important;
 	stroke-linejoin: round !important;
 }
+
+/* metaflush toiletroll: outline is potrace-traced FILLED line-work (thickness
+   is fill, not stroke), so render it as solid deep-navy fill and kill the stroke
+   the shared rule above forces. Placed after the shared block so it wins the
+   cascade without modifying the gravestone selector. */
+.mascot-svg.character-toiletroll .mascot-outline-path {
+	fill: #1a1730 !important;
+	stroke: none !important;
+	stroke-width: 0 !important;
+}

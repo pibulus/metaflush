@@ -378,7 +378,7 @@
 							xlink:href={mascotPathsUrl}
 							href={mascotPathsUrl + '#mascot-body-path'}
 							class="mascot-outline-path"
-							fill="#000000"
+							fill="#1a1730"
 							opacity="1"
 						/>
 					</g>
@@ -389,14 +389,14 @@
 							xlink:href={mascotPathsUrl}
 							href={mascotPathsUrl + '#mascot-eye-left-path'}
 							class="mascot-eye mascot-eye-left"
-							fill="#000000"
+							fill="#1a1730"
 						/>
 						<use
 							bind:this={rightEye}
 							xlink:href={mascotPathsUrl}
 							href={mascotPathsUrl + '#mascot-eye-right-path'}
 							class="mascot-eye mascot-eye-right"
-							fill="#000000"
+							fill="#1a1730"
 						/>
 					</g>
 
