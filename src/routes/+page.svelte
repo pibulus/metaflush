@@ -5,6 +5,8 @@
   import PageLayout from "$lib/components/layout/PageLayout.svelte";
   import AnimatedTitle from "$lib/components/AnimatedTitle.svelte";
   import FooterComponent from "$lib/components/FooterComponent.svelte";
+  import IntroModal from "$lib/components/IntroModal.svelte";
+  import AboutModal from "$lib/components/AboutModal.svelte";
   import {
     flushMetadata,
     formatBytes,
@@ -42,6 +44,16 @@
   function closeIntro() {
     showIntro = false;
     localStorage.setItem("metaflush:seen_intro", "true");
+  }
+
+  function closeAbout() {
+    showAbout = false;
+  }
+
+  // Reopen path: from the About modal, replay the onboarding intro.
+  function reopenIntro() {
+    showAbout = false;
+    showIntro = true;
   }
 
   function toggleStrict(val) {
@@ -205,96 +217,15 @@
      MODALS SECTION
      =================================================================== -->
 
-<!-- 1. INTRO ONBOARDING MODAL -->
-{#if showIntro}
-  <dialog class="modal" open>
-    <div class="modal-box bg-[#ffffa8] border-4 border-black shadow-[6px_6px_0px_0px_#000] relative">
-      <button type="button" class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-red-400 font-black text-black hover:bg-red-500 flex items-center justify-center" on:click={closeIntro}>✕</button>
-      
-      <div class="space-y-4">
-        <h1 class="text-3xl font-black leading-tight tracking-tight text-black text-center">
-          metaflush's clean. <br /> keeps your location unseen.
-        </h1>
+<!-- 1. INTRO ONBOARDING MODAL (skeleton component) -->
+<IntroModal open={showIntro} on:close={closeIntro} />
 
-        <div class="space-y-3 mt-4 text-sm font-bold text-gray-800">
-          <p class="leading-relaxed bg-white/70 p-3 rounded-xl border-2 border-black">
-            🎯 <strong>100% In-Browser</strong> — Your files are scrubbed right on your device. Zero bytes ever upload to our server.
-          </p>
-          <p class="leading-relaxed bg-white/70 p-3 rounded-xl border-2 border-black">
-            ⚡ <strong>Lossless Clearing</strong> — Direct binary chunk slicing removes tags without re-encoding, preserving your pixels perfectly.
-          </p>
-          <p class="leading-relaxed bg-white/70 p-3 rounded-xl border-2 border-black">
-            ✨ <strong>Clean Sharing</strong> — Easily strip GPS coordinates, camera models, serial numbers, Photoshop history, and device markers.
-          </p>
-        </div>
-
-        <p class="py-2 text-center text-base font-extrabold text-purple-700 animate-pulse">
-          No logs, no tracking, just pure clean pixels.
-        </p>
-
-        <button
-          type="button"
-          class="w-full border-4 border-black bg-purple-400 hover:bg-purple-500 py-3 text-lg font-black text-black rounded-xl shadow-[3px_3px_0px_0px_#000] transition-all hover:translate-x-[-1px] hover:translate-y-[-1px]"
-          on:click={closeIntro}
-        >
-          let's clean
-        </button>
-      </div>
-    </div>
-    <div class="modal-backdrop" on:click={closeIntro}></div>
-  </dialog>
-{/if}
-
-<!-- 2. ABOUT MODAL -->
-{#if showAbout}
-  <dialog class="modal" open>
-    <div class="modal-box bg-[#fdf2f8] border-4 border-black shadow-[6px_6px_0px_0px_#000] relative">
-      <button type="button" class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-red-400 font-black text-black hover:bg-red-500 flex items-center justify-center" on:click={() => (showAbout = false)}>✕</button>
-      
-      <div class="space-y-4">
-        <h3 class="text-2xl font-black text-black">About metaflush</h3>
-        
-        <div class="rounded-xl border-2 border-black bg-white p-4">
-          <p class="text-sm font-medium leading-relaxed text-gray-700">
-            metaflush is a minimalist, local-first utility designed to sweep tracking metadata from your media files before you share them. We believe your location, camera details, and digital history are yours to keep.
-          </p>
-        </div>
-
-        <div class="space-y-2">
-          <h4 class="text-sm font-black text-black">Why use this?</h4>
-          <ul class="space-y-1.5 text-xs font-bold text-gray-700">
-            <li class="flex items-center gap-2">
-              <span class="text-purple-600">✦</span> Geotags can leak your precise home address.
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-purple-600">✦</span> Editor logs leak how, when, and who created the file.
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-purple-600">✦</span> Hidden metadata behaves like unique device fingerprints.
-            </li>
-          </ul>
-        </div>
-
-        <div class="border-l-4 border-purple-400 py-1 pl-4 italic text-sm font-extrabold text-gray-600">
-          "A clean byte is a quiet byte."
-        </div>
-
-        <div class="flex items-end justify-between pt-2">
-          <div>
-            <p class="text-[10px] font-bold text-gray-500">Made with ☕ in Melbourne</p>
-          </div>
-          <div class="flex items-center gap-1.5 text-[10px] font-extrabold text-gray-600">
-            <span>❤️</span>
-            <a href="https://github.com/pibulus" target="_blank" rel="noopener noreferrer" class="hover:text-pink-600 underline">
-              Pablo / Pibulus
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-backdrop" on:click={() => (showAbout = false)}></div>
-  </dialog>
-{/if}
+<!-- 2. ABOUT MODAL (skeleton component) -->
+<AboutModal
+  open={showAbout}
+  on:close={closeAbout}
+  on:replayIntro={reopenIntro}
+/>
 
 <!-- 3. OPTIONS MODAL -->
 {#if showOptions}
