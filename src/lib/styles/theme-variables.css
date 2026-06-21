@@ -9,6 +9,7 @@
   --ds-primary-color-rgb: 16, 185, 129;
   --ds-accent-color: #06b6d4;
   --ds-footer-surface-rgb: 240, 253, 244;
+  --app-suffix-gradient: linear-gradient(to bottom right, #10b981, #06b6d4);
 }
 
 html[data-theme="clean"] {
@@ -18,6 +19,7 @@ html[data-theme="clean"] {
   --ds-primary-color-rgb: 16, 185, 129;
   --ds-accent-color: #06b6d4;
   --ds-footer-surface-rgb: 240, 253, 244;
+  --app-suffix-gradient: linear-gradient(to bottom right, #10b981, #06b6d4);
 }
 
 html[data-theme="porcelain"] {
@@ -27,6 +29,7 @@ html[data-theme="porcelain"] {
   --ds-primary-color-rgb: 14, 165, 233;
   --ds-accent-color: #3b82f6;
   --ds-footer-surface-rgb: 236, 254, 255;
+  --app-suffix-gradient: linear-gradient(to bottom right, #0ea5e9, #3b82f6);
 }
 
 html[data-theme="kraft"] {
@@ -36,6 +39,7 @@ html[data-theme="kraft"] {
   --ds-primary-color-rgb: 133, 77, 14;
   --ds-accent-color: #166534;
   --ds-footer-surface-rgb: 253, 252, 250;
+  --app-suffix-gradient: linear-gradient(to bottom right, #854d0e, #166534);
 }
 
 html[data-theme="lavender"] {
@@ -45,4 +49,5 @@ html[data-theme="lavender"] {
   --ds-primary-color-rgb: 99, 102, 241;
   --ds-accent-color: #a855f7;
   --ds-footer-surface-rgb: 245, 243, 255;
+  --app-suffix-gradient: linear-gradient(to bottom right, #6366f1, #a855f7);
 }
