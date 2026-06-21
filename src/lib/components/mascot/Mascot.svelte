@@ -41,7 +41,7 @@
 	// Per-mascot vertical nudge for the accessory (1024-space units).
 	export let accessoryOffsetY = 0;
 	// Which character art to render (art/<name>.svg). Default: first available.
-	export let character = 'brain';
+	export let character = 'toiletroll';
 	const mascotInstanceId = Symbol('mascot-instance');
 	let mascotSvg;
 	let spinPivotElement;
@@ -378,7 +378,7 @@
 							xlink:href={mascotPathsUrl}
 							href={mascotPathsUrl + '#mascot-body-path'}
 							class="mascot-outline-path"
-							fill="#1a1730"
+							fill="var(--mascot-ink, #000000)"
 							opacity="1"
 						/>
 					</g>
@@ -389,14 +389,14 @@
 							xlink:href={mascotPathsUrl}
 							href={mascotPathsUrl + '#mascot-eye-left-path'}
 							class="mascot-eye mascot-eye-left"
-							fill="#1a1730"
+							fill="var(--mascot-ink, #000000)"
 						/>
 						<use
 							bind:this={rightEye}
 							xlink:href={mascotPathsUrl}
 							href={mascotPathsUrl + '#mascot-eye-right-path'}
 							class="mascot-eye mascot-eye-right"
-							fill="#1a1730"
+							fill="var(--mascot-ink, #000000)"
 						/>
 					</g>
 
@@ -419,6 +419,9 @@
 
 <style>
 	.mascot-container {
+		/* Eye/body ink colour. Per-app SKIN knob — soft indigo, deliberate
+		   against metaflush's pastel gradients. */
+		--mascot-ink: #1a1730;
 		position: relative;
 		width: 100%;
 		height: 100%;

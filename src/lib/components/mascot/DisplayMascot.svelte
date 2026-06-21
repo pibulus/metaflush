@@ -141,7 +141,7 @@
 					xlink:href={mascotPathsUrl}
 					href={mascotPathsUrl + '#mascot-body-path'}
 					class="mascot-outline-path"
-					fill="#000000"
+					fill="var(--mascot-ink, #000000)"
 					opacity="1"
 				/>
 			</g>
@@ -152,14 +152,14 @@
 					xlink:href={mascotPathsUrl}
 					href={mascotPathsUrl + '#mascot-eye-left-path'}
 					class="mascot-eye mascot-eye-left"
-					fill="#000000"
+					fill="var(--mascot-ink, #000000)"
 				/>
 				<use
 					bind:this={rightEye}
 					xlink:href={mascotPathsUrl}
 					href={mascotPathsUrl + '#mascot-eye-right-path'}
 					class="mascot-eye mascot-eye-right"
-					fill="#000000"
+					fill="var(--mascot-ink, #000000)"
 				/>
 			</g>
 		</svg>
@@ -176,6 +176,9 @@
 	}
 
 	.mascot-container {
+		/* Eye/body ink colour. Per-app SKIN knob — soft indigo, deliberate
+		   against metaflush's pastel gradients. Matches the hero Mascot. */
+		--mascot-ink: #1a1730;
 		position: relative;
 		width: 100%;
 		height: 100%;
