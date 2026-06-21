@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
-  import { Mascot, DisplayMascot } from "$lib/components/mascot";
+  import { Mascot } from "$lib/components/mascot";
+  import ThemeMascot from "$lib/components/ThemeMascot.svelte";
   import PageLayout from "$lib/components/layout/PageLayout.svelte";
   import AnimatedTitle from "$lib/components/AnimatedTitle.svelte";
   import FooterComponent from "$lib/components/FooterComponent.svelte";
@@ -340,34 +341,24 @@
           </div>
 
           <div class="flex flex-col gap-2 rounded-xl border-2 border-black bg-white p-4">
-            <span class="text-xs font-black uppercase text-gray-500">App Theme</span>
-            <div class="grid grid-cols-4 gap-2 mt-1" role="group" aria-label="Theme">
-              {#each THEME_LIST as themeOpt, index}
+            <span class="text-xs font-black uppercase text-gray-500">Vibe</span>
+            <div class="vibes" role="group" aria-label="Theme">
+              {#each THEME_LIST as t}
                 <button
                   type="button"
-                  class="relative flex flex-col items-center justify-center p-2 rounded-xl border-2 border-black transition-all shadow-[2px_2px_0px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#000] hover:bg-gray-50 { $theme === themeOpt.id ? 'bg-emerald-50 border-emerald-500' : 'bg-[#fffdf5]' }"
-                  on:click={() => applyTheme(themeOpt.id)}
-                  title={themeOpt.label}
-                  aria-label="Choose {themeOpt.label} theme"
-                  aria-pressed={$theme === themeOpt.id}
+                  class="vibe"
+                  class:on={$theme === t.id}
+                  on:click={() => applyTheme(t.id)}
+                  title={t.label}
+                  aria-label="{t.label} vibe"
+                  aria-pressed={$theme === t.id}
                 >
-                  <div class="relative h-10 w-10 flex items-center justify-center">
-                    <div class="preview-mascot-wrapper">
-                      <DisplayMascot
-                        theme={themeOpt.id}
-                        character="toiletroll"
-                        size="36px"
-                        seed={index * 1000 + 12345}
-                        disableJsAnimation={true}
-                      />
-                    </div>
-                  </div>
-                  <span class="text-[10px] font-black mt-1 text-black leading-none">{themeOpt.label}</span>
-                  
-                  {#if $theme === themeOpt.id}
-                    <div class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-400 border border-black text-[9px] font-black text-black" aria-hidden="true">
-                      ✓
-                    </div>
+                  <span class="vibe-art">
+                    <ThemeMascot theme={t.id} size="38px" />
+                  </span>
+                  <span class="vibe-name">{t.label}</span>
+                  {#if $theme === t.id}
+                    <span class="vibe-check" aria-hidden="true">✓</span>
                   {/if}
                 </button>
               {/each}
@@ -512,5 +503,73 @@
   }
   .theme-lavender {
     background: linear-gradient(135deg, #6366f1, #a855f7);
+  }
+
+  /* ── Canonical "Vibe" mascot-swatch picker (Options modal) ── */
+  .vibes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+  .vibe {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.55rem 0.25rem 0.45rem;
+    border-radius: 14px;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    transition:
+      transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+      border-color 0.15s ease;
+  }
+  .vibe:hover {
+    transform: translateY(-2px);
+  }
+  .vibe.on {
+    border-color: var(--ds-primary-color, #10b981);
+    box-shadow: 0 0 0 2px rgba(var(--ds-primary-color-rgb, 16, 185, 129), 0.35);
+  }
+  .vibe-art {
+    line-height: 0;
+    transition: transform 0.2s ease;
+  }
+  .vibe:hover .vibe-art {
+    transform: scale(1.08);
+  }
+  .vibe-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ds-ink, #2a2233);
+  }
+  .vibe-check {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--ds-primary-color, #10b981);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vibe,
+    .vibe-art {
+      transition: none;
+    }
+    .vibe:hover,
+    .vibe:hover .vibe-art {
+      transform: none;
+    }
   }
 </style>
