@@ -23,6 +23,31 @@
   /** @type {Array<{name,inputSize,outputSize,saved,ratio,blob,grew,note}>} */
   let results = [];
 
+  // On ~800px desktop viewports the tall hero pushes fresh results (and their
+  // Download buttons) below the fold with no cue. Reveal the first batch with
+  // a minimal scroll (family pattern from talktype's waveform fix).
+  let resultsEl;
+  let resultsRevealTimer = null;
+  $: if (results.length && resultsEl) scheduleResultsReveal();
+
+  function scheduleResultsReveal() {
+    if (resultsRevealTimer) return;
+    resultsRevealTimer = setTimeout(() => {
+      resultsRevealTimer = null;
+      try {
+        const reduceMotion = window.matchMedia?.(
+          "(prefers-reduced-motion: reduce)",
+        )?.matches;
+        resultsEl?.scrollIntoView({
+          behavior: reduceMotion ? "auto" : "smooth",
+          block: "nearest",
+        });
+      } catch {
+        // Scrolling is a nicety — never let it break the flush flow.
+      }
+    }, 250);
+  }
+
   // Modal states
   let showIntro = false;
   let showAbout = false;
@@ -161,7 +186,7 @@
     {/if}
 
     {#if results.length}
-      <div class="w-full">
+      <div class="w-full results-block" bind:this={resultsEl}>
         <p class="mb-2 text-center text-sm font-bold text-accent">
           Flushed {results.length} files (Wiped {formatBytes(totalSaved)} of metadata) 🎉
         </p>
@@ -234,7 +259,7 @@
       <button type="button" class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-red-400 font-black text-black hover:bg-red-500 flex items-center justify-center" on:click={() => (showOptions = false)}>✕</button>
       
       <div class="space-y-4">
-        <h3 class="text-2xl font-black text-black">metaflush Options</h3>
+        <h3 class="pr-10 text-2xl font-black text-black">metaflush Options</h3>
         
         <div class="space-y-4 mt-2">
           <div class="flex flex-col gap-2 rounded-xl border-2 border-black bg-white p-4">
@@ -311,6 +336,11 @@
 {/if}
 
 <style>
+  .results-block {
+    /* scrollIntoView respects this (unlike margin) — clears the fixed footer */
+    scroll-margin-bottom: 7rem;
+  }
+
   .drop {
     width: 100%;
     min-height: 168px;

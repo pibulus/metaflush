@@ -333,7 +333,6 @@
 		}
 	}}
 	aria-label={mascotLabel}
-	aria-pressed={interactive ? $mascotState.isRecording.toString() : undefined}
 	aria-disabled={!interactive}
 	tabindex={interactive ? '0' : '-1'}
 >

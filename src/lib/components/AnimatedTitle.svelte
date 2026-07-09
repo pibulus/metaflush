@@ -1,8 +1,9 @@
 <script>
   import { AppSuffix } from "$lib/components/ui";
 
-  export let title = "DrShrink";
-  export let subtitle = "Drop a file in, get a smaller one out. No settings, no fuss.";
+  export let title = "metaflush";
+  export let subtitle =
+    "Drop your files onto the mascot to wipe EXIF, GPS, and tracking metadata instantly. Done 100% locally.";
   export let showAppSuffix = true;
 
   $: titleCharacters = Array.from(title);
