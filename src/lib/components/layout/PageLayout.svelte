@@ -35,6 +35,7 @@
         </span>
         <span class="footer-dot mx-2">•</span>
         <span class="text-sm font-light">
+          Made with
           <span
             class="footer-heart inline-block animate-pulse transition-transform hover:scale-110"
             aria-label="love">❤️</span

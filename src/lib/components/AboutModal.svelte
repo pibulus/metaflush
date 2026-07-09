@@ -130,7 +130,7 @@
       <p class="privacy">
         🔒 100% local — files never leave your device. No logs, no tracking.
       </p>
-      <p class="madeby">Made with ☕ in Melbourne</p>
+      <p class="madeby">Made with ☕ in Melbourne · Pablo</p>
     </div>
 
     <button
