@@ -143,6 +143,7 @@
       <Mascot
         bind:this={mascot}
         character="toiletroll"
+        eyes="shifty"
         accessory="none"
         theme={$theme}
         {busy}

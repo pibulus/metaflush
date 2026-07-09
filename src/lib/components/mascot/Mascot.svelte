@@ -3,7 +3,14 @@
 	import { browser } from '$app/environment';
 
 	import './mascot-animations.css';
-	import { ANIMATION_STATES, CSS_CLASSES, PULSE_CONFIG, EYE_CONFIG } from './animationConfig.js';
+	import {
+		ANIMATION_STATES,
+		CSS_CLASSES,
+		PULSE_CONFIG,
+		EYE_CONFIG,
+		BLINK_CONFIG
+	} from './animationConfig.js';
+	import { resolveEyePersonality, applyEyePersonalityToConfigs } from './eyePersonality.js';
 
 	import { mascotState, theme as localTheme } from './stores/index.js';
 	import { getThemeNames, FALLBACK_THEME } from './mascotTheme.js';
@@ -42,6 +49,8 @@
 	export let accessoryOffsetY = 0;
 	// Which character art to render (art/<name>.svg). Default: first available.
 	export let character = 'toiletroll';
+	// Eye personality — archetype name or override object (see eyePersonality.js).
+	export let eyes = 'default';
 	const mascotInstanceId = Symbol('mascot-instance');
 	let mascotSvg;
 	let spinPivotElement;
@@ -231,14 +240,21 @@
 				seed
 			});
 
-			// Initialize Eye Tracking Service
+			// Initialize Eye Tracking Service — tuned by this app's eye personality.
+			// Blink cadence lands in BLINK_CONFIG; gaze range/smoothing land in
+			// EYE_CONFIG (applyEyeTransforms reads the multipliers at render time).
+			const eyePersona = resolveEyePersonality(eyes);
+			applyEyePersonalityToConfigs(eyePersona, {
+				blinkConfig: BLINK_CONFIG,
+				eyeConfig: EYE_CONFIG
+			});
 			eyeTracker = createEyeTracking({
 				debug: debug, // Pass the debug prop
-				eyeSensitivity: EYE_CONFIG.SMOOTHING,
+				eyeSensitivity: eyePersona.smoothing,
 				maxDistanceX: EYE_CONFIG.X_DIVISOR,
 				maxDistanceY: EYE_CONFIG.Y_DIVISOR,
-				maxXMovement: EYE_CONFIG.X_MULTIPLIER,
-				maxYMovement: EYE_CONFIG.Y_MULTIPLIER
+				maxXMovement: eyePersona.rangeX,
+				maxYMovement: eyePersona.rangeY
 			});
 			// Initialize with the main mascot SVG container (for getBoundingClientRect)
 			eyeTracker.initialize(mascotSvg);
