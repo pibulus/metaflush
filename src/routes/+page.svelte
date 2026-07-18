@@ -181,7 +181,7 @@
     </label>
 
     {#if error}
-      <p class="rounded-xl bg-red-50 px-4 py-2 text-sm font-semibold text-red-600 border-2 border-red-500">
+      <p class="rounded-xl bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 border-2 border-amber-500">
         {error}
       </p>
     {/if}
@@ -257,7 +257,7 @@
 {#if showOptions}
   <dialog class="modal" open>
     <div class="modal-box bg-[#ecfdf5] border-4 border-black shadow-[6px_6px_0px_0px_#000] relative">
-      <button type="button" class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-red-400 font-black text-black hover:bg-red-500 flex items-center justify-center" on:click={() => (showOptions = false)}>✕</button>
+      <button type="button" class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-rose-300 font-black text-black hover:bg-rose-400 flex items-center justify-center" on:click={() => (showOptions = false)}>✕</button>
       
       <div class="space-y-4">
         <h3 class="pr-10 text-2xl font-black text-black">metaflush Options</h3>
@@ -291,7 +291,7 @@
                 class="w-5 h-5 text-emerald-600 accent-emerald-600 border-2 border-black" 
               />
               <div>
-                <span class="font-black text-sm block text-red-600">Strict Mode (Extreme Clean)</span>
+                <span class="font-black text-sm block text-amber-600">Strict Mode (Extreme Clean)</span>
                 <span class="text-xs font-semibold text-gray-500">Wipes all metadata, comments, and color profiles. Results in the absolute smallest file size possible, but might subtly alter colors.</span>
               </div>
             </label>
