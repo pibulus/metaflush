@@ -24,14 +24,15 @@
   </main>
 
   <footer
-    class="ds-app-footer fixed bottom-0 left-0 right-0 z-10 box-border border-t pb-2 pt-3 text-center text-xs backdrop-blur-[3px] sm:pb-4 sm:pt-5"
+    class="ds-app-footer fixed bottom-0 left-0 right-0 z-10 box-border border-t pb-2 pt-3 text-center text-xs backdrop-blur-[3px] sm:pb-4 sm:pt-5 px-4 sm:px-6 md:px-8"
   >
     <div
-      class="container mx-auto flex flex-row items-center justify-center gap-1 sm:justify-between sm:gap-3"
+      class="footer-row mx-auto flex w-full flex-row items-center justify-center gap-3 sm:justify-between"
     >
-      <div class="ml-4 hidden flex-wrap items-center sm:ml-6 sm:flex">
+      <div class="hidden items-center sm:flex min-w-0 shrink whitespace-nowrap">
         <span class="mr-1 text-sm font-medium">
-          © {footerYear} {appName}
+          © {footerYear}
+          {appName}
         </span>
         <span class="footer-dot mx-2">•</span>
         <span class="text-sm font-light">
@@ -42,7 +43,7 @@
           > in Melbourne
         </span>
       </div>
-      <div class="flex items-center sm:mr-6">
+      <div class="flex shrink-0 items-center">
         <slot name="footer-buttons" />
       </div>
     </div>
@@ -58,8 +59,16 @@
   .bg-gradient-mesh {
     background-color: var(--ds-bg, #f3e8ff);
     background-image:
-      radial-gradient(circle at 20% 10%, var(--ds-bg-2, #fce7f3), transparent 55%),
-      radial-gradient(circle at 80% 90%, var(--ds-bg-2, #fce7f3), transparent 55%);
+      radial-gradient(
+        circle at 20% 10%,
+        var(--ds-bg-2, #fce7f3),
+        transparent 55%
+      ),
+      radial-gradient(
+        circle at 80% 90%,
+        var(--ds-bg-2, #fce7f3),
+        transparent 55%
+      );
   }
 
   .ds-app-footer {

@@ -3,8 +3,8 @@
   // Built fresh to the shared SKELETON, mirroring IntroModal exactly: native
   // <dialog> with the app.css warm-dark blurred backdrop (tap-to-close), pop-in
   // OPEN + .modal-closing animate-out CLOSE (setTimeout-before-close), 44px
-  // circular X (top-right 1rem, scale-hover, focus ring), centred card above
-  // 640px → docked bottom-sheet below it. prefers-reduced-motion = instant.
+  // circular X (top-right 1rem, scale-hover, focus ring), centred floating
+  // card at every breakpoint (motion in app.css). prefers-reduced-motion = instant.
   // Full link set: toiletroll mascot icon + bare github.com/pibulus +
   // ko-fi.com/madebypablo + local-first privacy one-liner.
   // SKIN stays 100% metaflush: neobrutalist 4px black border + 6px hard shadow,
@@ -29,10 +29,11 @@
       return;
     }
     closing = true;
+    // Matches the 180ms close animation in app.css (.modal-closing).
     setTimeout(() => {
       closing = false;
       dispatch("close");
-    }, 220);
+    }, 180);
   }
 
   function replayIntro() {
@@ -86,9 +87,17 @@
       <div class="reasons">
         <h4 class="reasons-head">Why use this?</h4>
         <ul>
-          <li><span class="bullet">✦</span> Geotags can leak your precise home address.</li>
-          <li><span class="bullet">✦</span> Editor logs leak how, when, and who created the file.</li>
-          <li><span class="bullet">✦</span> Hidden metadata behaves like unique device fingerprints.</li>
+          <li>
+            <span class="bullet">✦</span> Geotags can leak your precise home address.
+          </li>
+          <li>
+            <span class="bullet">✦</span> Editor logs leak how, when, and who created
+            the file.
+          </li>
+          <li>
+            <span class="bullet">✦</span> Hidden metadata behaves like unique device
+            fingerprints.
+          </li>
         </ul>
       </div>
 
@@ -153,13 +162,7 @@
     text-align: center;
   }
 
-  /* ── CLOSE animation (#1 win): hold .modal-closing before unmount ───── */
-  .modal.modal-closing > .modal-backdrop {
-    animation: about-backdrop-out 0.22s ease-in forwards;
-  }
-  :global(dialog.modal[open]) > .modal-box.modal-closing {
-    animation: about-pop-out 0.22s cubic-bezier(0.4, 0, 1, 0.6) forwards;
-  }
+  /* Open/close motion + backdrop fade all live in app.css (shared DNA). */
 
   /* ── X button: 44px circular, top-right 1rem, scale-hover, focus ring ─ */
   .x {
@@ -348,72 +351,13 @@
     color: #9ca3af;
   }
 
-  /* ── Mobile bottom-sheet below 640px ─────────────────────────────── */
-  @media (max-width: 639px) {
-    .about-box {
-      width: 100%;
-      max-width: 100%;
-      max-height: 92dvh;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      padding-bottom: calc(
-        clamp(1.25rem, 3vw, 2rem) + env(safe-area-inset-bottom, 0px)
-      );
-      animation: about-sheet-in 0.34s
-        linear(0, 0.4 7%, 1.05 18%, 1.12 24%, 0.97 47%, 1.005 70%, 1) both;
-    }
-    :global(dialog.modal[open]) {
-      place-items: end center;
-      padding: 0;
-    }
-    :global(dialog.modal[open]) > .modal-box.modal-closing {
-      animation: about-sheet-out 0.22s cubic-bezier(0.4, 0, 1, 0.6) forwards;
-    }
-  }
-
-  /* ── Keyframes ───────────────────────────────────────────────────── */
-  @keyframes about-backdrop-out {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  @keyframes about-pop-out {
-    from {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: scale(0.94) translateY(8px);
-    }
-  }
-  @keyframes about-sheet-in {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  @keyframes about-sheet-out {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(100%);
-    }
-  }
+  /* Centered floating card at every breakpoint — no mobile bottom sheet. */
 
   @media (prefers-reduced-motion: reduce) {
     .about-box,
     .x,
     .replay,
-    .link,
-    :global(dialog.modal[open]) > .modal-box.modal-closing,
-    .modal.modal-closing > .modal-backdrop {
+    .link {
       animation: none !important;
       transition: none !important;
     }

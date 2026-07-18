@@ -3,7 +3,7 @@
   // Built fresh to the shared SKELETON: native <dialog> with warm-dark blurred
   // backdrop (tap-to-close), pop-in OPEN + .modal-closing animate-out CLOSE
   // (setTimeout-before-close), 44px circular X (top-right 1rem, scale-hover,
-  // focus ring), centred card above 640px → docked bottom-sheet below it.
+  // focus ring), centred floating card at every breakpoint (motion in app.css).
   // prefers-reduced-motion = instant.
   // SKIN stays 100% metaflush: neobrutalist 4px black border + 6px hard shadow,
   // yellow #ffffa8 card / purple CTA, toiletroll mascot, "keeps your location
@@ -27,10 +27,11 @@
       return;
     }
     closing = true;
+    // Matches the 180ms close animation in app.css (.modal-closing).
     setTimeout(() => {
       closing = false;
       dispatch("close");
-    }, 220);
+    }, 180);
   }
 
   function onKeydown(e) {
@@ -71,16 +72,16 @@
 
       <div class="points">
         <p class="point">
-          🎯 <strong>100% In-Browser</strong> — Your files are scrubbed right on
-          your device. Zero bytes ever upload to our server.
+          🎯 <strong>100% In-Browser</strong> — Your files are scrubbed right on your
+          device. Zero bytes ever upload to our server.
         </p>
         <p class="point">
-          ⚡ <strong>Lossless Clearing</strong> — Direct binary chunk slicing
-          removes tags without re-encoding, preserving your pixels perfectly.
+          ⚡ <strong>Lossless Clearing</strong> — Direct binary chunk slicing removes
+          tags without re-encoding, preserving your pixels perfectly.
         </p>
         <p class="point">
-          ✨ <strong>Clean Sharing</strong> — Easily strip GPS coordinates,
-          camera models, serial numbers, Photoshop history, and device markers.
+          ✨ <strong>Clean Sharing</strong> — Easily strip GPS coordinates, camera
+          models, serial numbers, Photoshop history, and device markers.
         </p>
       </div>
 
@@ -111,13 +112,7 @@
     text-align: center;
   }
 
-  /* ── CLOSE animation (#1 win): hold .modal-closing before unmount ───── */
-  .modal.modal-closing > .modal-backdrop {
-    animation: intro-backdrop-out 0.22s ease-in forwards;
-  }
-  :global(dialog.modal[open]) > .modal-box.modal-closing {
-    animation: intro-pop-out 0.22s cubic-bezier(0.4, 0, 1, 0.6) forwards;
-  }
+  /* Open/close motion + backdrop fade all live in app.css (shared DNA). */
 
   /* ── X button: 44px circular, top-right 1rem, scale-hover, focus ring ─ */
   .x {
@@ -225,64 +220,9 @@
     outline-offset: 2px;
   }
 
-  /* ── Mobile bottom-sheet below 640px ─────────────────────────────── */
-  @media (max-width: 639px) {
-    .intro-box {
-      width: 100%;
-      max-width: 100%;
-      max-height: 92dvh;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      padding-bottom: calc(
-        clamp(1.25rem, 3vw, 2rem) + env(safe-area-inset-bottom, 0px)
-      );
-      animation: intro-sheet-in 0.34s
-        linear(0, 0.4 7%, 1.05 18%, 1.12 24%, 0.97 47%, 1.005 70%, 1) both;
-    }
-    :global(dialog.modal[open]) {
-      place-items: end center;
-      padding: 0;
-    }
-    :global(dialog.modal[open]) > .modal-box.modal-closing {
-      animation: intro-sheet-out 0.22s cubic-bezier(0.4, 0, 1, 0.6) forwards;
-    }
-  }
+  /* Centered floating card at every breakpoint — no mobile bottom sheet. */
 
   /* ── Keyframes ───────────────────────────────────────────────────── */
-  @keyframes intro-backdrop-out {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  @keyframes intro-pop-out {
-    from {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: scale(0.94) translateY(8px);
-    }
-  }
-  @keyframes intro-sheet-in {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-  @keyframes intro-sheet-out {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(100%);
-    }
-  }
   @keyframes intro-pulse {
     0%,
     100% {
@@ -297,9 +237,7 @@
     .intro-box,
     .x,
     .cta,
-    .tagline,
-    :global(dialog.modal[open]) > .modal-box.modal-closing,
-    .modal.modal-closing > .modal-backdrop {
+    .tagline {
       animation: none !important;
       transition: none !important;
     }
