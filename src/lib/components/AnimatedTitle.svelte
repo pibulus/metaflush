@@ -15,7 +15,7 @@
 
 <div class="title-container relative">
   <h1
-    class="staggered-text title-ink mb-1 cursor-default select-none text-center text-[clamp(3rem,9vmin_+_1.1rem,8rem)] font-black tracking-normal [font-feature-settings:'kern'_1] [font-kerning:normal] [font-variation-settings:'wght'_900,'opsz'_32] [letter-spacing:0]"
+    class="staggered-text title-ink mb-1 cursor-default select-none text-center text-[clamp(3rem,7.5vmin_+_1rem,5.5rem)] font-black tracking-normal [font-feature-settings:'kern'_1] [font-kerning:normal] [font-variation-settings:'wght'_900,'opsz'_32] [letter-spacing:0]"
     aria-label={title}
   >
     <span class="title-main-word">
@@ -141,6 +141,37 @@
   :global(.title-suffix) {
     letter-spacing: 0;
     font-variation-settings: inherit;
+  }
+
+  /* Compact desktop viewports (≤820px tall): smaller wordmark + tighter subtitle
+     so mascot + title + drop zone share one screen. */
+  @media (min-width: 768px) and (max-height: 820px) {
+    h1.staggered-text {
+      font-size: 4rem;
+      line-height: 1.05;
+    }
+    .slide-in-subtitle {
+      margin-bottom: 0.875rem;
+    }
+  }
+
+  /* Squat laptops: smaller still, subtitle tucked right in. */
+  @media (min-width: 768px) and (max-height: 740px) {
+    h1.staggered-text {
+      font-size: 3.25rem;
+    }
+    .slide-in-subtitle {
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  /* Short desktop viewports: tuck the subtitle in close. */
+  @media (min-width: 768px) and (max-height: 740px) {
+    .slide-in-subtitle {
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
   }
 
   @media (max-width: 640px) {

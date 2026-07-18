@@ -138,8 +138,10 @@
 </svelte:head>
 
 <PageLayout>
-  <div class="flex w-full flex-col items-center gap-8">
-    <div class="h-44 w-44 sm:h-48 sm:w-48 md:h-56 md:w-56 lg:h-64 lg:w-64">
+  <div class="flex w-full flex-col items-center gap-5 md:gap-6">
+    <div
+      class="mascot-slot h-44 w-44 sm:h-48 sm:w-48 md:h-52 md:w-52 lg:h-56 lg:w-56"
+    >
       <Mascot
         bind:this={mascot}
         character="toiletroll"
@@ -152,7 +154,10 @@
       />
     </div>
 
-    <AnimatedTitle title="metaflush" subtitle="Drop your files onto the mascot to wipe EXIF, GPS, and tracking metadata instantly. Done 100% locally." />
+    <AnimatedTitle
+      title="metaflush"
+      subtitle="Drop your files onto the mascot to wipe EXIF, GPS, and tracking metadata instantly. Done 100% locally."
+    />
 
     <!-- Drop zone -->
     <label
@@ -176,12 +181,16 @@
         <span class="drop-text">{busyLabel}</span>
       {:else}
         <span class="drop-text">Drop files here</span>
-        <span class="drop-sub">images (jpeg, png, webp) · zero server uploads</span>
+        <span class="drop-sub"
+          >images (jpeg, png, webp) · zero server uploads</span
+        >
       {/if}
     </label>
 
     {#if error}
-      <p class="rounded-xl bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 border-2 border-amber-500">
+      <p
+        class="rounded-xl bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-700 border-2 border-amber-500"
+      >
         {error}
       </p>
     {/if}
@@ -189,7 +198,8 @@
     {#if results.length}
       <div class="w-full results-block" bind:this={resultsEl}>
         <p class="mb-2 text-center text-sm font-bold text-accent">
-          Flushed {results.length} files (Wiped {formatBytes(totalSaved)} of metadata) 🎉
+          Flushed {results.length} files (Wiped {formatBytes(totalSaved)} of metadata)
+          🎉
         </p>
         <ul class="flex flex-col gap-2">
           {#each results as r}
@@ -232,9 +242,9 @@
   </div>
 
   <svelte:fragment slot="footer-buttons">
-    <FooterComponent 
-      on:showAbout={() => (showAbout = true)} 
-      on:showOptions={() => (showOptions = true)} 
+    <FooterComponent
+      on:showAbout={() => (showAbout = true)}
+      on:showOptions={() => (showOptions = true)}
     />
   </svelte:fragment>
 </PageLayout>
@@ -256,48 +266,71 @@
 <!-- 3. OPTIONS MODAL -->
 {#if showOptions}
   <dialog class="modal" open>
-    <div class="modal-box bg-[#ecfdf5] border-4 border-black shadow-[6px_6px_0px_0px_#000] relative">
-      <button type="button" class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-rose-300 font-black text-black hover:bg-rose-400 flex items-center justify-center" on:click={() => (showOptions = false)}>✕</button>
-      
+    <div
+      class="modal-box bg-[#ecfdf5] border-4 border-black shadow-[6px_6px_0px_0px_#000] relative"
+    >
+      <button
+        type="button"
+        class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-rose-300 font-black text-black hover:bg-rose-400 flex items-center justify-center"
+        on:click={() => (showOptions = false)}>✕</button
+      >
+
       <div class="space-y-4">
         <h3 class="pr-10 text-2xl font-black text-black">metaflush Options</h3>
-        
+
         <div class="space-y-4 mt-2">
-          <div class="flex flex-col gap-2 rounded-xl border-2 border-black bg-white p-4">
-            <span class="text-xs font-black uppercase text-gray-500">Wiping Intensity</span>
-            
+          <div
+            class="flex flex-col gap-2 rounded-xl border-2 border-black bg-white p-4"
+          >
+            <span class="text-xs font-black uppercase text-gray-500"
+              >Wiping Intensity</span
+            >
+
             <label class="flex items-center gap-3 cursor-pointer mt-1">
-              <input 
-                type="radio" 
-                name="strict" 
-                checked={!strictMode} 
+              <input
+                type="radio"
+                name="strict"
+                checked={!strictMode}
                 on:change={() => toggleStrict(false)}
-                class="w-5 h-5 text-emerald-600 accent-emerald-600 border-2 border-black" 
+                class="w-5 h-5 text-emerald-600 accent-emerald-600 border-2 border-black"
               />
               <div>
-                <span class="font-black text-sm block">Safe Mode (Recommended)</span>
-                <span class="text-xs font-semibold text-gray-500">Wipes GPS and EXIF details but keeps the ICC color profile to keep colors looking rich on all screens.</span>
+                <span class="font-black text-sm block"
+                  >Safe Mode (Recommended)</span
+                >
+                <span class="text-xs font-semibold text-gray-500"
+                  >Wipes GPS and EXIF details but keeps the ICC color profile to
+                  keep colors looking rich on all screens.</span
+                >
               </div>
             </label>
 
             <div class="border-t border-gray-200 my-1"></div>
 
             <label class="flex items-center gap-3 cursor-pointer">
-              <input 
-                type="radio" 
-                name="strict" 
-                checked={strictMode} 
+              <input
+                type="radio"
+                name="strict"
+                checked={strictMode}
                 on:change={() => toggleStrict(true)}
-                class="w-5 h-5 text-emerald-600 accent-emerald-600 border-2 border-black" 
+                class="w-5 h-5 text-emerald-600 accent-emerald-600 border-2 border-black"
               />
               <div>
-                <span class="font-black text-sm block text-amber-600">Strict Mode (Extreme Clean)</span>
-                <span class="text-xs font-semibold text-gray-500">Wipes all metadata, comments, and color profiles. Results in the absolute smallest file size possible, but might subtly alter colors.</span>
+                <span class="font-black text-sm block text-amber-600"
+                  >Strict Mode (Extreme Clean)</span
+                >
+                <span class="text-xs font-semibold text-gray-500"
+                  >Wipes all metadata, comments, and color profiles. Results in
+                  the absolute smallest file size possible, but might subtly
+                  alter colors.</span
+                >
               </div>
             </label>
           </div>
 
-          <div class="flex flex-col gap-2 rounded-xl border-2 border-black bg-white p-4">
+          <div
+            class="flex flex-col gap-2 rounded-xl border-2 border-black bg-white p-4"
+          >
             <span class="text-xs font-black uppercase text-gray-500">Vibe</span>
             <div class="vibes" role="group" aria-label="Theme">
               {#each THEME_LIST as t}
@@ -342,9 +375,31 @@
     scroll-margin-bottom: 7rem;
   }
 
+  /* Compact desktop viewports: compress the hero ramp further. */
+  @media (min-width: 768px) and (max-height: 820px) {
+    .mascot-slot {
+      height: 11rem !important;
+      width: 11rem !important;
+    }
+    .drop {
+      min-height: 140px;
+    }
+  }
+
+  /* Squat laptops (≤740px tall): deepest squeeze. */
+  @media (min-width: 768px) and (max-height: 740px) {
+    .mascot-slot {
+      height: 9rem !important;
+      width: 9rem !important;
+    }
+    .drop {
+      min-height: 120px;
+    }
+  }
+
   .drop {
     width: 100%;
-    min-height: 168px;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -385,8 +440,12 @@
   }
 
   @keyframes progress-stripes {
-    from { background-position: 40px 0; }
-    to { background-position: 0 0; }
+    from {
+      background-position: 40px 0;
+    }
+    to {
+      background-position: 0 0;
+    }
   }
   .drop-text {
     font-size: 1.25rem;
