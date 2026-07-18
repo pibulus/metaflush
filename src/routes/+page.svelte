@@ -1,4 +1,5 @@
 <script>
+  import { notePwaMoment } from "$lib/components/PwaInstallCard.svelte";
   import { onMount } from "svelte";
   import { Mascot } from "$lib/components/mascot";
   import ThemeMascot from "$lib/components/ThemeMascot.svelte";
@@ -101,6 +102,7 @@
         results = [r, ...results];
         mascot?.react(Math.round(Math.max(0, r.saved) / 1024) || 1);
       }
+      if (out.length) notePwaMoment(); // a finished flush earns the install suggestion
     } catch (e) {
       error = e.message;
     }

@@ -10,6 +10,7 @@
   } from "$lib/components/mascot";
   import { metaflushThemes } from "$lib/mascotThemes.js";
   import { theme, applyTheme } from "$lib";
+  import PwaInstallCard from "$lib/components/PwaInstallCard.svelte";
   import { DEFAULT_THEME } from "$lib/constants.js";
 
   // Register metaflush's mascot palettes (keyed to the app theme names).
@@ -32,3 +33,10 @@
 </svg>
 
 <slot />
+
+<PwaInstallCard
+  appName="metaflush"
+  tagline="A clean byte is a quiet byte."
+  iconSrc="/icon-192.png"
+  storagePrefix="metaflush"
+/>
