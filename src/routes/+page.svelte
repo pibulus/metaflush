@@ -125,6 +125,26 @@
 
   $: totalSaved = results.reduce((a, r) => a + Math.max(0, r.saved), 0);
 
+  // Options close-out — same 180ms .modal-closing pattern as IntroModal/
+  // AboutModal, so the inline Options dialog stops vanishing instantly.
+  let optionsClosing = false;
+  function closeOptions() {
+    if (optionsClosing) return;
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      showOptions = false;
+      return;
+    }
+    optionsClosing = true;
+    setTimeout(() => {
+      optionsClosing = false;
+      showOptions = false;
+    }, 180);
+  }
+  function onOptionsKeydown(e) {
+    if (e.key === "Escape") closeOptions();
+  }
+
   // Lock body scroll when modals are visible
   $: if (typeof document !== "undefined") {
     if (showIntro || showAbout || showOptions) {
@@ -138,6 +158,8 @@
 <svelte:head>
   <title>metaflush — strip metadata client-side</title>
 </svelte:head>
+
+<svelte:window on:keydown={showOptions ? onOptionsKeydown : undefined} />
 
 <PageLayout>
   <div class="flex w-full flex-col items-center gap-5 md:gap-6">
@@ -269,14 +291,14 @@
 
 <!-- 3. OPTIONS MODAL -->
 {#if showOptions}
-  <dialog class="modal" open>
+  <dialog class="modal" class:modal-closing={optionsClosing} open>
     <div
       class="modal-box bg-[#ecfdf5] border-4 border-black shadow-[6px_6px_0px_0px_#000] relative"
     >
       <button
         type="button"
         class="absolute top-4 right-4 h-9 w-9 border-2 border-black rounded-full bg-rose-300 font-black text-black hover:bg-rose-400 flex items-center justify-center"
-        on:click={() => (showOptions = false)}>✕</button
+        on:click={closeOptions}>✕</button
       >
 
       <div class="space-y-4">
@@ -363,13 +385,13 @@
         <button
           type="button"
           class="w-full mt-2 border-4 border-black bg-emerald-400 hover:bg-emerald-500 py-3 text-base font-black text-black rounded-xl shadow-[3px_3px_0px_0px_#000]"
-          on:click={() => (showOptions = false)}
+          on:click={closeOptions}
         >
           Save Options
         </button>
       </div>
     </div>
-    <div class="modal-backdrop" on:click={() => (showOptions = false)}></div>
+    <div class="modal-backdrop" on:click={closeOptions}></div>
   </dialog>
 {/if}
 
