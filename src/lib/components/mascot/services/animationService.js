@@ -15,7 +15,7 @@ import {
 	ANIMATION_TIMING
 } from '../animationConfig.js';
 import { mascotState } from '../stores/mascotState.js';
-import { initGradientAnimation } from '../gradientAnimator.js';
+import { initGradientAnimation, cleanupAllAnimations } from '../gradientAnimator.js';
 import { pickSpecialAnimation } from '../personality.js';
 
 // Animation timers
@@ -53,6 +53,8 @@ export function initAnimations(elements, config = {}) {
 	return () => {
 		stopSpecialAnimationWatch();
 		cleanupTimers(timers);
+		// The gradient rAF loops outlived every unmount — this was never called.
+		cleanupAllAnimations();
 	};
 }
 
